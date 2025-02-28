@@ -1,0 +1,8 @@
+{
+    "liveServer.settings.port": 5501,
+    "extensions.localStoragePath": "G:\\ExtensionesVScode",
+    "extensions.autoUpdate": true,
+    "extensions.gallery": {
+        "serviceUrl": "https://marketplace.visualstudio.com/_apis/public/gallery"
+    }
+}
