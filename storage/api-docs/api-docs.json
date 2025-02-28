@@ -1,0 +1,187 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API de Recetas",
+        "description": "Documentación de la API de recetas, donde puedes obtener información sobre las recetas disponibles",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/recetas": {
+            "get": {
+                "tags": [
+                    "Recetas"
+                ],
+                "summary": "Obtener lista de recetas",
+                "description": "Este endpoint devuelve todos las recetas disponibles en la tienda",
+                "operationId": "c52826f228be974afed842a7da290752",
+                "responses": {
+                    "200": {
+                        "description": "Lista de recetas",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "nombre": {
+                                                "description": "Nombre de la receta",
+                                                "type": "string"
+                                            },
+                                            "descripcion": {
+                                                "description": "Descripción de la receta",
+                                                "type": "text"
+                                            },
+                                            "imagen": {
+                                                "description": "URL de la imagen de la receta",
+                                                "type": "string"
+                                            },
+                                            "precio": {
+                                                "description": "Precio de la receta",
+                                                "type": "number",
+                                                "format": "float"
+                                            },
+                                            "tipo": {
+                                                "description": "Tipo de receta",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Solicitud inválida"
+                    }
+                }
+            }
+        },
+        "/api/recetas/{id}": {
+            "delete": {
+                "tags": [
+                    "Recetas"
+                ],
+                "summary": "Eliminar una receta",
+                "description": "Este endpoint permite eliminar una receta por su ID",
+                "operationId": "d6242efa4dd64b50072ae8a259e7a0fd",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la receta",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Receta eliminada exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Receta eliminada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Receta no encontrada"
+                    }
+                }
+            }
+        },
+        "/api/recetas/{id}/editar": {
+            "put": {
+                "tags": [
+                    "Recetas"
+                ],
+                "summary": "Actualizar una receta existente",
+                "description": "Este endpoint permite actualizar una receta por su ID",
+                "operationId": "7f9662b42c6b5e30a36ca41ad35030d3",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la receta",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nombre": {
+                                        "description": "Nombre de la receta",
+                                        "type": "string"
+                                    },
+                                    "descripcion": {
+                                        "description": "Descripción de la receta",
+                                        "type": "string"
+                                    },
+                                    "imagen": {
+                                        "description": "URL de la imagen de la receta",
+                                        "type": "string"
+                                    },
+                                    "precio": {
+                                        "description": "Precio de la receta",
+                                        "type": "number",
+                                        "format": "float"
+                                    },
+                                    "tipo": {
+                                        "description": "Tipo de receta (desayuno, comida, cena)",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Receta actualizada exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Receta actualizada"
+                                        },
+                                        "receta": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Errores de validación"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Recetas",
+            "description": "Recetas"
+        }
+    ]
+}
